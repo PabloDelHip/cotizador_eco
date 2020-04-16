@@ -5,8 +5,27 @@
  */
 
 require('./bootstrap');
+import Vue from 'vue';
+// import * as  VueGoogleMaps from 'vue2-google-maps'
+const VueGoogleMaps = require('vue2-google-maps');
+import Geocoder from "@pderas/vue2-geocoder";
+
+Vue.use(VueGoogleMaps, {
+    load: {
+      key: 'AIzaSyDEsVicSEB-OMgHjVwdjaFi4KXYtWCOYgU',
+      libraries: 'places'
+    }
+  });
+
+  Vue.use(Geocoder, {
+    defaultCountryCode: null, // e.g. 'CA'
+    defaultLanguage:    null, // e.g. 'en'
+    defaultMode:        'address', // or 'lat-lng'
+    googleMapsApiKey:   'AIzaSyDEsVicSEB-OMgHjVwdjaFi4KXYtWCOYgU'
+});
 
 window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,6 +39,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('datos-component', require('./components/DatosComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

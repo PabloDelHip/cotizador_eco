@@ -28,6 +28,7 @@
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         <link href="{{asset('css/app.css')}}" rel="stylesheet"> <!--Añadimos el css generado con webpack-->
+        
     </head>
     <body style="background-color: white;">
 
@@ -48,6 +49,7 @@
         
         <div id="app" class="content"><!--La equita id debe ser app, como hemos visto en app.js-->
             <example-component></example-component><!--Añadimos nuestro componente vuejs-->
+            <datos-component></datos-component><!--Añadimos nuestro componente vuejs-->
         </div>
 
         

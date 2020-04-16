@@ -165,7 +165,7 @@ v-for="pequenos in contenedor.pequenos"
 </template>
 
 <script>
-    import axios from 'axios';
+    
     export default {
 
         data(){
