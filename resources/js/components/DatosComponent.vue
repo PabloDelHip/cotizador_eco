@@ -151,6 +151,24 @@
                         </div>
                     </div>
                     <!--PIPAS-->
+
+                    <div class="col-12 row ">
+                        <div class="col-12 row d-flex justify-content-start">
+                            <label class="titulo-contenedores">Equipo Compactador con Tolvas</label>
+                            <div class="form-group clearfix row">
+                                <div class="col" v-for="(toolbar,indext) in contenedor.info.toolbar" style="text-align: center;">
+                                    <img class="imagen-recipientes" :src="'img/tolbar.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
+                                    <div class="icheck-primary d-inline">
+                                        <input @click="addContenedorToolbar(`${toolbar.capacidad}-${index}_${indext}`)" type="checkbox" :id="`toolbar_${index}_${indext}`" :value="`${toolbar.capacidad}`" :name="`${toolbar.capacidad}-${index}_${indext}`">
+                                        <label :for="`toolbar_${index}_${indext}`">
+                                            {{ toolbar.capacidad }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--TOOLBAR-->
                 
                 </div>
                 <!--CONTENEDORES-->
@@ -415,6 +433,7 @@
                 pequenos:[],
                 grandes:[], 
                 pipas:[],
+                toolbar: [],
                 dias:[],
                 fields: {},
                 errors: {},
@@ -462,6 +481,7 @@
                    axios.post('post',{pequenos: this.pequenos,
                                         grandes: this.grandes,
                                         pipas: this.pipas,
+                                        toolbar: this.toolbar,
                                         dias: this.dias,
                                         ciudad: this.ciudad_servicio,
                                         pregunta_uno: this.pregunta_1,
@@ -576,7 +596,7 @@
             {
                 let lista_ciudades = [{
                         id: 1,
-                        nombre: 'Mexico'
+                        nombre: 'CDMX'
                     },
                     {
                         id: 2,
@@ -589,7 +609,71 @@
                     {
                         id: 4,
                         nombre: 'Orizaba'
-                    }];
+                    },
+                    {
+                        id: 5,
+                        nombre: 'Álvaro Obregón'
+                    },
+                    {
+                        id: 6,
+                        nombre: 'Azcapotzalco'
+                    },
+                    {
+                        id: 7,
+                        nombre: 'Benito Juárez'
+                    },
+                    {
+                        id: 8,
+                        nombre: 'Coyoacán'
+                    },
+                    {
+                        id: 9,
+                        nombre: 'Cuajimalpa de Morelos'
+                    },
+                    {
+                        id: 10,
+                        nombre: 'Cuauhtémoc'
+                    },
+                    {
+                        id: 11,
+                        nombre: 'Gustavo A. Madero'
+                    },
+                    {
+                        id: 12,
+                        nombre: 'Iztacalco'
+                    },
+                    {
+                        id: 13,
+                        nombre: 'Iztapalapa'
+                    },
+                    {
+                        id: 14,
+                        nombre: 'Magdalena Contreras'
+                    },
+                    {
+                        id: 15,
+                        nombre: 'Miguel Hidalgo'
+                    },
+                    {
+                        id: 16,
+                        nombre: 'Milpa Alta'
+                    },
+                    {
+                        id: 17,
+                        nombre: 'Tláhuac'
+                    },
+                    {
+                        id: 18,
+                        nombre: 'Tlalpan'
+                    },
+                    {
+                        id: 19,
+                        nombre: 'Venustiano Carranza'
+                    },
+                    {
+                        id: 11,
+                        nombre: 'Xochimilco'
+                    },];
                 
                 this.ciudades = lista_ciudades;
             },
@@ -642,12 +726,19 @@
                     }, 
                 ]
 
+                let toolbar = [
+                    {
+                      capacidad: '30 m³' 
+                    }
+                ]
+
                 let info_contenedores = {
                     total: this.counter,
                     info: {
                         pequenos : contenedores_pequenos,
                         grandes: contenedores_grandes,
-                        pipas: pipas
+                        pipas: pipas,
+                        toolbar: toolbar
                     }
                 };
 
@@ -739,6 +830,22 @@
 
                 console.log(this.pipas.length);
                 console.log(this.pipas);
+            },
+            addContenedorToolbar(contenedor)
+            {
+                if(this.toolbar.indexOf(contenedor) == -1)
+                {
+                    this.toolbar.push(contenedor)
+                }
+                else
+                {
+                    let posicion = this.toolbar.indexOf(contenedor);
+                    this.toolbar.splice(posicion, 1);
+                }
+
+
+                console.log(this.toolbar.length);
+                console.log(this.toolbar);
             },
             addDias(dia)
             {

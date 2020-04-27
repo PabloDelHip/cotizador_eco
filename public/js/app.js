@@ -2445,6 +2445,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2471,6 +2489,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       pequenos: [],
       grandes: [],
       pipas: [],
+      toolbar: [],
       dias: [],
       fields: {},
       errors: {},
@@ -2519,6 +2538,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           pequenos: this.pequenos,
           grandes: this.grandes,
           pipas: this.pipas,
+          toolbar: this.toolbar,
           dias: this.dias,
           ciudad: this.ciudad_servicio,
           pregunta_uno: this.pregunta_1,
@@ -2623,7 +2643,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     listaCiudades: function listaCiudades() {
       var lista_ciudades = [{
         id: 1,
-        nombre: 'Mexico'
+        nombre: 'CDMX'
       }, {
         id: 2,
         nombre: 'Toluca'
@@ -2633,6 +2653,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         id: 4,
         nombre: 'Orizaba'
+      }, {
+        id: 5,
+        nombre: 'Álvaro Obregón'
+      }, {
+        id: 6,
+        nombre: 'Azcapotzalco'
+      }, {
+        id: 7,
+        nombre: 'Benito Juárez'
+      }, {
+        id: 8,
+        nombre: 'Coyoacán'
+      }, {
+        id: 9,
+        nombre: 'Cuajimalpa de Morelos'
+      }, {
+        id: 10,
+        nombre: 'Cuauhtémoc'
+      }, {
+        id: 11,
+        nombre: 'Gustavo A. Madero'
+      }, {
+        id: 12,
+        nombre: 'Iztacalco'
+      }, {
+        id: 13,
+        nombre: 'Iztapalapa'
+      }, {
+        id: 14,
+        nombre: 'Magdalena Contreras'
+      }, {
+        id: 15,
+        nombre: 'Miguel Hidalgo'
+      }, {
+        id: 16,
+        nombre: 'Milpa Alta'
+      }, {
+        id: 17,
+        nombre: 'Tláhuac'
+      }, {
+        id: 18,
+        nombre: 'Tlalpan'
+      }, {
+        id: 19,
+        nombre: 'Venustiano Carranza'
+      }, {
+        id: 11,
+        nombre: 'Xochimilco'
       }];
       this.ciudades = lista_ciudades;
     },
@@ -2664,12 +2732,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         capacidad: '20 m³'
       }];
+      var toolbar = [{
+        capacidad: '30 m³'
+      }];
       var info_contenedores = {
         total: this.counter,
         info: {
           pequenos: contenedores_pequenos,
           grandes: contenedores_grandes,
-          pipas: pipas
+          pipas: pipas,
+          toolbar: toolbar
         }
       };
       ++this.counter; // this.datos_contenedores.push(contenedores_pequenos, contenedores_grandes, pipas);
@@ -2730,6 +2802,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       console.log(this.pipas.length);
       console.log(this.pipas);
+    },
+    addContenedorToolbar: function addContenedorToolbar(contenedor) {
+      if (this.toolbar.indexOf(contenedor) == -1) {
+        this.toolbar.push(contenedor);
+      } else {
+        var posicion = this.toolbar.indexOf(contenedor);
+        this.toolbar.splice(posicion, 1);
+      }
+
+      console.log(this.toolbar.length);
+      console.log(this.toolbar);
     },
     addDias: function addDias(dia) {
       if (this.dias.indexOf(dia) == -1) {
@@ -42996,6 +43079,100 @@ var render = function() {
                                         _vm._v(
                                           "\n                                        " +
                                             _vm._s(pipas.capacidad) +
+                                            "\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12 row " }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-12 row d-flex justify-content-start"
+                      },
+                      [
+                        _c("label", { staticClass: "titulo-contenedores" }, [
+                          _vm._v("Equipo Compactador con Tolvas")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "form-group clearfix row" },
+                          _vm._l(contenedor.info.toolbar, function(
+                            toolbar,
+                            indext
+                          ) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass: "col",
+                                staticStyle: { "text-align": "center" }
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "imagen-recipientes",
+                                  staticStyle: {
+                                    width: "100px",
+                                    "margin-bottom": "10px"
+                                  },
+                                  attrs: {
+                                    src: "img/tolbar.png",
+                                    alt: "logo-ecolomovil"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "icheck-primary d-inline" },
+                                  [
+                                    _c("input", {
+                                      attrs: {
+                                        type: "checkbox",
+                                        id: "toolbar_" + index + "_" + indext,
+                                        name:
+                                          toolbar.capacidad +
+                                          "-" +
+                                          index +
+                                          "_" +
+                                          indext
+                                      },
+                                      domProps: {
+                                        value: "" + toolbar.capacidad
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.addContenedorToolbar(
+                                            toolbar.capacidad +
+                                              "-" +
+                                              index +
+                                              "_" +
+                                              indext
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      {
+                                        attrs: {
+                                          for: "toolbar_" + index + "_" + indext
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(toolbar.capacidad) +
                                             "\n                                    "
                                         )
                                       ]

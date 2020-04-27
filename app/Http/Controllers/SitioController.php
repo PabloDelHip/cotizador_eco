@@ -19,6 +19,7 @@ class SitioController extends Controller
         $contenedores_pequenos=$request->pequenos;
         $contenedores_grandes=$request->grandes;
         $contenedores_pipas=$request->pipas;
+        $contenedores_toolbar=$request->toolbar;
         // $pregunta_uno = $request->pregunta_uno;
         $contenedores_pequenos_info="";
         $datos = $request->all();
@@ -86,6 +87,21 @@ class SitioController extends Controller
                
             }
 
+            $informacion_servicios.= "<br><br>";
+
+            $informacion_servicios.="Las Tolvas son: ";            
+            foreach ($contenedores_toolbar as $contenedor_toolbar) {
+                $posicion = strpos($contenedor_toolbar, "-");
+                $toolbar_info = substr($contenedor_toolbar,0,$posicion);
+                $num_servicio = substr($contenedor_toolbar,($posicion+1),1);
+
+                if($num_servicio == $i)
+                {
+                    $informacion_servicios.="<b>".$toolbar_info.", </b>";
+                }
+               
+            }
+
 
             $informacion_servicios.= "<br><br><hr>";
         }
@@ -120,7 +136,9 @@ class SitioController extends Controller
         Mail::send('emails.contact', $data,function($msj) use($subject,$for){
             $msj->from("soporte@ment-travel.com","Soporte");
             $msj->subject($subject);
-            $msj->to($for);
+            $msj->to("gerencia.ventas@ecolomovil.com");
+            $msj->to("callcenter2@ecolomovil.com");
+            $msj->to("pablodelhip@gmail.com");
         });
         
 

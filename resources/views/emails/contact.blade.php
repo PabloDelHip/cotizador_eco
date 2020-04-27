@@ -7,7 +7,7 @@
     <title>Mensaje</title>
 </head>
 <body>
-    <p>Se a realizado una nueva cotizacion</p>
+    <p>Se a realizado una nueva cotización desde el sitio web con la siguiente información: </p>
     {!! $informacion !!}
     <p> ¿Cuentas con un área libre de 1.5 mts de ancho por 2 mts de profundidad para la instalación del equipo? <b> {{ $pregunta_uno }} </b> </p>
     <p> ¿El área de circulación permite el tránsito y maniobra de unidades de hasta 6 mts de altura? <b> {{ $pregunta_dos }} </b> </p> 
