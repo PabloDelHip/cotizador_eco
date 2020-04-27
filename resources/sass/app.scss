@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 // Variables
 @import 'variables';
@@ -7,11 +8,24 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body
+{
+    background-color: #f9f9f9 !important;
+}
+
 .hero
 {
     position: relative;
     height: 320px;
     background-size: cover !important;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+
+    h2
+    {
+        font-size: 3.5em !important;
+    }    
+   
 }
 
 div.titulo
@@ -34,4 +48,42 @@ img.imagen-recipientes
 label.titulo-contenedores
 {
     width: 100% !important;
+    font-size: 1.3em;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 20px;
 }
+
+.num_cel
+{
+    font-size: 1.5em;
+    color: #696868;
+
+    i
+    {
+        color: #D93A3E;
+    }
+}
+
+div.contenedor
+{
+    background-color: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    padding: 23px;
+    border-top: 3px solid #2FA360; 
+}
+
+footer
+{
+    div.info-uno
+    {    
+        background-color: rgb(47, 47, 47);
+        color: #fff;
+    }
+
+    div.info-dos
+    {    
+        background-color: rgb(20, 20, 20);
+        color: #fff;
+    }
+}
+

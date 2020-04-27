@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', ['as' => '/..', 'uses' => 'SitioController@index']);
+Route::get('/email', 'SitioController@email');
+Route::post('/post', 'SitioController@informacion');

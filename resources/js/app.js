@@ -9,6 +9,12 @@ import Vue from 'vue';
 // import * as  VueGoogleMaps from 'vue2-google-maps'
 const VueGoogleMaps = require('vue2-google-maps');
 import Geocoder from "@pderas/vue2-geocoder";
+import Vuelidate from 'vuelidate';
+import VueSweetalert2 from 'vue-sweetalert2';
+ 
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 Vue.use(VueGoogleMaps, {
     load: {
@@ -23,6 +29,8 @@ Vue.use(VueGoogleMaps, {
     defaultMode:        'address', // or 'lat-lng'
     googleMapsApiKey:   'AIzaSyDEsVicSEB-OMgHjVwdjaFi4KXYtWCOYgU'
 });
+Vue.use(Vuelidate)
+Vue.use(VueSweetalert2);
 
 window.Vue = require('vue');
 
@@ -38,7 +46,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('datos-component', require('./components/DatosComponent.vue').default);
 
 /**

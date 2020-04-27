@@ -19,22 +19,7 @@
                 </div>
             </div>
             <!--CIUDADES-->
-            
-            <!--<div>
-
-            <div class="inputArea" v-for="input in inputs" :key="input.id">
-    <label :for="input.id">{{input.label}}</label>
-    <input :id="input.id" v-model="input.value"></input>
-  </div>
-  <button @click="addContenedores">Add input</button>
-
-                <pre>
-                {{datos_contenedores}}
-                </pre>
-v-for="contenedor in datos_contenedores"
-v-for="pequenos in contenedor.pequenos" 
- {{ pequenos.capacidad }}
-            </div>-->
+        
 
             <div class="col-12 row" v-for="(contenedor, index) in datos_contenedores.info">
                 <div class="col-8">

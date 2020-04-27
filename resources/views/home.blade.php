@@ -32,25 +32,62 @@
     </head>
     <body style="background-color: white;">
 
-        {{-- <div class="container">
-            <div class="row col-12 mt-2 d-flex align-items-end">
+        <div class="container">
+            <div class="row col-12 mt-2 d-flex align-items-end p-2">
                 <div class="col-6">
                     <img src="{{asset('img/logo-ecolomovil.png')}}" alt="logo-ecolomovil" style="width: 100px;">
                 </div>
                 <div class="col-6 text-right">
-                    <span> <i class="fas fa-phone"></i> 0810 555-5500 </span> 
+                    <span class="num_cel"> <i class="fas fa-phone"></i> 0810 555-5500 </span> 
                 </div>
             </div>
-        </div> --}}
+        </div>
 
-        {{-- <section>
-            <div class="hero" style="background: url({{asset('img/fondo.jpg')}}) center center no-repeat;"></div>
-        </section> --}}
+        <section>
+            <div class="hero" style="background: url({{asset('img/fondo.jpg')}}) center center no-repeat;">
+            
+                <div class="container">
+                    <div class="row d-flex justify-content-end align-items-center" style="height: 320px;">
+                        <div class="col-6 text-right">
+                            <h2>COTIZADOR ONLINE</h2>
+                            <h1>ECOLOMOVIL</h1>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </section>
         
         <div id="app" class="content"><!--La equita id debe ser app, como hemos visto en app.js-->
             <example-component></example-component><!--Añadimos nuestro componente vuejs-->
             <datos-component></datos-component><!--Añadimos nuestro componente vuejs-->
         </div>
+
+        <footer class="mt-3">
+            <div class="info-uno">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center" style="padding: 15px !important;">
+                            <small>
+                                Recuerda que el servicio que está contratando es para residuos de manejo especial y residuos sólidos urbanos. Te recomendamos no colocar residuos peligrosos ya que por norma aplica multas.
+                                <br>
+                                <i class="fas fa-phone"></i> &nbsp; 0810 555-5500 | <i class="fas fa-envelope"></i> &nbsp; contacto@ecolomovil.com
+                            </small>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-dos">
+                <div class="col-12 text-center" style="padding: 15px !important;">
+                    <small>
+                        © 2020 Copyright by Ecolomovil. Todos los derechos reservados.
+                    </small>
+                    
+                </div>
+            </div>
+        </footer>
 
         
 

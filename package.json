@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "@pderas/vue2-geocoder": "^1.1.0",
-        "vue2-google-maps": "^0.10.7"
+        "vue-sweetalert2": "^3.0.3",
+        "vue2-google-maps": "^0.10.7",
+        "vuelidate": "^0.7.5"
     }
 }
