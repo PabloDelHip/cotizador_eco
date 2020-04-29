@@ -2515,7 +2515,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       domicilio_servicio: "",
       comentarios: "",
       texto_boton: "Solicitar Cotización",
-      bandera: false
+      bandera: false,
+      num_contenedores: []
     };
   },
   methods: {
@@ -2535,11 +2536,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.texto_boton = 'Enviando Email...';
         this.bandera = true;
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('post', (_axios$post = {
-          pequenos: this.pequenos,
-          grandes: this.grandes,
-          pipas: this.pipas,
-          toolbar: this.toolbar,
-          dias: this.dias,
+          info_contenedores: this.num_contenedores,
           ciudad: this.ciudad_servicio,
           pregunta_uno: this.pregunta_1,
           pregunta_dos: this.pregunta_2,
@@ -2554,7 +2551,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           codigo_postal: this.codigo_postal,
           colonia: this.colonia
         }, _defineProperty(_axios$post, "ciudad", this.ciudad), _defineProperty(_axios$post, "nombre", this.nombre), _defineProperty(_axios$post, "apellido_paterno", this.apellido_paterno), _defineProperty(_axios$post, "apellido_materno", this.apellido_materno), _defineProperty(_axios$post, "email", this.email), _defineProperty(_axios$post, "telefono", this.telefono), _defineProperty(_axios$post, "direccion_map", this.direccion_map), _defineProperty(_axios$post, "comentarios", this.comentarios), _defineProperty(_axios$post, "num_servicios", this.servicios), _axios$post)).then(function (response) {
-          // alert("todo bien");
+          console.log(response.data); // alert("todo bien");
+
           _this.$swal.fire({
             icon: 'success',
             title: 'Bien',
@@ -2631,12 +2629,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     addContenedores: function addContenedores() {
+      // this.num_contenedores.push({
+      //     dias: ["lunes","martes","miercoles"]
+      // });
+      // this.num_contenedores.push({
+      //     dias: ["jueves","viernes","sabado"]
+      // });
+      // console.log(this.num_contenedores);
       this.servicios++;
       console.log(this.servicios);
       this.listaContenedores();
     },
     deleteContenedor: function deleteContenedor(index) {
-      this.datos_contenedores.info.splice(index, 1);
+      // console.log("el index "+index);
+      // console.log(this.animales);
+      // console.log(this.animales.splice(1,1));
+      this.datos_contenedores.info.splice(1, 1);
+      this.num_contenedores.pop();
       this.servicios--;
       console.log(this.servicios);
     },
@@ -2749,82 +2758,74 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.datos_contenedores.info.push(info_contenedores);
     },
     validaciones: function validaciones() {
-      if (this.ciudad_servicio == "") {
-        this.mensaje_error = "Favor de seleccionar una ciudad";
-      } else if (this.pipas.length == 0 && this.pequenos.length == 0 && this.grandes.length == 0) {
-        this.mensaje_error = "Favor de seleccionar un los contenedores";
-      } else if (this.dias.length == 0) {
-        this.mensaje_error = "Favor de seleccionar dia de servicio";
-      } else {
-        this.mensaje_error = "";
-      }
-
-      if (this.mensaje_error != "") {
+      if (this.num_contenedores.length !== this.servicios) {
         this.$swal.fire({
           icon: 'error',
           title: 'Error',
-          text: this.mensaje_error
+          text: "Favor de seleccionar los contenedores"
         });
         return false;
       } else {
-        return true;
-      }
-    },
-    addContenedorPequeno: function addContenedorPequeno(contenedor) {
-      if (this.pequenos.indexOf(contenedor) == -1) {
-        this.pequenos.push(contenedor);
-      } else {
-        var posicion = this.pequenos.indexOf(contenedor);
-        this.pequenos.splice(posicion, 1);
+        for (var i = 0; i < this.servicios; i++) {
+          if (this.num_contenedores[i].contenedor.length == 0) {
+            this.$swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: "Favor de seleccionar el contenedor en el servicio " + (i + 1)
+            });
+            return false;
+          } else if (this.num_contenedores[i].dias.length == 0) {
+            this.$swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: "Favor de seleccionar los dias de servicio en el servicio " + (i + 1)
+            });
+            return false;
+          }
+        }
       }
 
-      console.log(this.pequenos.indexOf(contenedor));
-      console.log(this.pequenos);
+      return true;
     },
-    addContenedorGrande: function addContenedorGrande(contenedor) {
-      if (this.grandes.indexOf(contenedor) == -1) {
+    addContenedorPequeno: function addContenedorPequeno(contenedor, index) {
+      if (!this.num_contenedores[index]) {
+        this.num_contenedores.push({
+          contenedor: contenedor,
+          dias: []
+        });
+      } else {
+        this.num_contenedores[index].contenedor = contenedor;
+      }
+
+      console.log(this.num_contenedores);
+    },
+    addDias: function addDias(dia, index) {
+      if (!this.num_contenedores[index]) {
+        this.num_contenedores.push({
+          contenedor: [],
+          dias: [dia]
+        });
+      } else {
+        if (this.num_contenedores[index].dias.indexOf(dia) == -1) {
+          console.log(this.num_contenedores[index].dias.indexOf(dia));
+          this.num_contenedores[index].dias.push(dia);
+        } else {
+          var posicion = this.num_contenedores[index].dias.indexOf(dia);
+          this.num_contenedores[index].dias.splice(posicion, 1);
+        } // console.log(this.num_contenedores[index].dias.length);
+
+      }
+
+      console.log(this.num_contenedores);
+    },
+    addContenedorGrande: function addContenedorGrande(contenedor, index) {
+      if (!this.grandes[index]) {
         this.grandes.push(contenedor);
       } else {
-        var posicion = this.grandes.indexOf(contenedor);
-        this.grandes.splice(posicion, 1);
+        this.grandes[index] = contenedor;
+        console.log(this.grandes[index]);
+        console.log(this.grandes);
       }
-
-      console.log(this.grandes.indexOf(contenedor));
-      console.log(this.grandes);
-    },
-    addContenedorPipa: function addContenedorPipa(contenedor) {
-      if (this.pipas.indexOf(contenedor) == -1) {
-        this.pipas.push(contenedor);
-      } else {
-        var posicion = this.pipas.indexOf(contenedor);
-        this.pipas.splice(posicion, 1);
-      }
-
-      console.log(this.pipas.length);
-      console.log(this.pipas);
-    },
-    addContenedorToolbar: function addContenedorToolbar(contenedor) {
-      if (this.toolbar.indexOf(contenedor) == -1) {
-        this.toolbar.push(contenedor);
-      } else {
-        var posicion = this.toolbar.indexOf(contenedor);
-        this.toolbar.splice(posicion, 1);
-      }
-
-      console.log(this.toolbar.length);
-      console.log(this.toolbar);
-    },
-    addDias: function addDias(dia) {
-      if (this.dias.indexOf(dia) == -1) {
-        this.dias.push(dia);
-      } else {
-        var posicion = this.dias.indexOf(dia);
-        this.dias.splice(posicion, 1);
-      }
-
-      this.dias.sort();
-      console.log(this.dias.length);
-      console.log(this.dias);
     }
   },
   mounted: function mounted() {
@@ -42853,13 +42854,16 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "icheck-primary d-inline" },
+                                  {
+                                    staticClass:
+                                      "custom-control custom-radio d-inline"
+                                  },
                                   [
                                     _c("input", {
                                       attrs: {
-                                        type: "checkbox",
+                                        type: "radio",
                                         id: "pequeno_" + index + "_" + indexp,
-                                        name: "contenedor_pequeno_" + index
+                                        name: "contenedor_" + index
                                       },
                                       domProps: {
                                         value:
@@ -42872,11 +42876,9 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.addContenedorPequeno(
-                                            pequenos.capacidad +
-                                              "-" +
-                                              index +
-                                              "_" +
-                                              indexp
+                                            "Contenedor pequeno de " +
+                                              pequenos.capacidad,
+                                            index
                                           )
                                         }
                                       }
@@ -42947,13 +42949,16 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "icheck-primary d-inline" },
+                                  {
+                                    staticClass:
+                                      "custom-control custom-radio d-inline"
+                                  },
                                   [
                                     _c("input", {
                                       attrs: {
-                                        type: "checkbox",
+                                        type: "radio",
                                         id: "grandes_" + index + "_" + indexg,
-                                        name: "contenedor_grande_" + index
+                                        name: "contenedor_" + index
                                       },
                                       domProps: {
                                         value:
@@ -42965,12 +42970,10 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.addContenedorGrande(
-                                            grandes.capacidad +
-                                              "-" +
-                                              index +
-                                              "_" +
-                                              indexg
+                                          return _vm.addContenedorPequeno(
+                                            "Contenedor grande de " +
+                                              grandes.capacidad,
+                                            index
                                           )
                                         }
                                       }
@@ -43041,28 +43044,23 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "icheck-primary d-inline" },
+                                  {
+                                    staticClass:
+                                      "custom-control custom-radio d-inline"
+                                  },
                                   [
                                     _c("input", {
                                       attrs: {
-                                        type: "checkbox",
+                                        type: "radio",
                                         id: "pipas_" + index + "_" + indexpi,
-                                        name:
-                                          pipas.capacidad +
-                                          "-" +
-                                          index +
-                                          "_" +
-                                          indexpi
+                                        name: "contenedor_" + index
                                       },
                                       domProps: { value: "" + pipas.capacidad },
                                       on: {
                                         click: function($event) {
-                                          return _vm.addContenedorPipa(
-                                            pipas.capacidad +
-                                              "-" +
-                                              index +
-                                              "_" +
-                                              indexpi
+                                          return _vm.addContenedorPequeno(
+                                            "Pipa de " + pipas.capacidad,
+                                            index
                                           )
                                         }
                                       }
@@ -43133,30 +43131,25 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "icheck-primary d-inline" },
+                                  {
+                                    staticClass:
+                                      "custom-control custom-radio d-inline"
+                                  },
                                   [
                                     _c("input", {
                                       attrs: {
-                                        type: "checkbox",
+                                        type: "radio",
                                         id: "toolbar_" + index + "_" + indext,
-                                        name:
-                                          toolbar.capacidad +
-                                          "-" +
-                                          index +
-                                          "_" +
-                                          indext
+                                        name: "contenedor_" + index
                                       },
                                       domProps: {
                                         value: "" + toolbar.capacidad
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.addContenedorToolbar(
-                                            toolbar.capacidad +
-                                              "-" +
-                                              index +
-                                              "_" +
-                                              indext
+                                          return _vm.addContenedorPequeno(
+                                            "Tolva de " + toolbar.capacidad,
+                                            index
                                           )
                                         }
                                       }
@@ -43204,7 +43197,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.addDias(index + "_lunes")
+                            return _vm.addDias("lunes", index)
                           }
                         }
                       }),
@@ -43225,7 +43218,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.addDias(index + "_martes")
+                            return _vm.addDias("martes", index)
                           }
                         }
                       }),
@@ -43246,7 +43239,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.addDias(index + "_miercoles")
+                            return _vm.addDias("miercoles", index)
                           }
                         }
                       }),
@@ -43267,7 +43260,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.addDias(index + "_jueves")
+                            return _vm.addDias("jueves", index)
                           }
                         }
                       }),
@@ -43293,7 +43286,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.addDias(index + "_viernes")
+                            return _vm.addDias("viernes", index)
                           }
                         }
                       }),
@@ -43314,7 +43307,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.addDias(index + "_sabado")
+                            return _vm.addDias("sabado", index)
                           }
                         }
                       }),
@@ -43335,7 +43328,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            return _vm.addDias(index + "_domingos")
+                            return _vm.addDias("domingo", index)
                           }
                         }
                       }),
@@ -43372,7 +43365,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.deleteContenedor(index)
+                            return _vm.deleteContenedor("" + index)
                           }
                         }
                       },

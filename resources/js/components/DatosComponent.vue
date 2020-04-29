@@ -104,8 +104,8 @@
                             <div class="form-group clearfix row">
                                 <div  class="col" v-for="(pequenos,indexp) in contenedor.info.pequenos" style="text-align: center;">
                                     <img class="imagen-recipientes" :src="'img/contenedores-pequeños.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
-                                    <div class="icheck-primary d-inline">
-                                        <input @click="addContenedorPequeno(`${pequenos.capacidad}-${index}_${indexp}`)" type="checkbox" :id="`pequeno_${index}_${indexp}`" :name="`contenedor_pequeno_${index}`" :value="`${pequenos.capacidad}-${index}_${indexp}`" >
+                                    <div class="custom-control custom-radio d-inline">
+                                        <input @click="addContenedorPequeno(`Contenedor pequeno de ${pequenos.capacidad}`,index)" type="radio" :id="`pequeno_${index}_${indexp}`" :name="`contenedor_${index}`" :value="`${pequenos.capacidad}-${index}_${indexp}`" >
                                         <label :for="`pequeno_${index}_${indexp}`">
                                         {{ pequenos.capacidad }}
                                         </label>
@@ -122,8 +122,8 @@
                             <div class="form-group clearfix row">
                                 <div class="col-3" v-for="(grandes,indexg) in contenedor.info.grandes" style="text-align: center;">
                                     <img class="imagen-recipientes" :src="'img/contenedores-grandes.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
-                                    <div class="icheck-primary d-inline">
-                                        <input @click="addContenedorGrande(`${grandes.capacidad}-${index}_${indexg}`)" type="checkbox" :id="`grandes_${index}_${indexg}`" :name="`contenedor_grande_${index}`" :value="`${grandes.capacidad}-${index}_${indexg}`">
+                                    <div class="custom-control custom-radio d-inline">
+                                        <input @click="addContenedorPequeno(`Contenedor grande de ${grandes.capacidad}`, index)" type="radio" :id="`grandes_${index}_${indexg}`" :name="`contenedor_${index}`" :value="`${grandes.capacidad}-${index}_${indexg}`">
                                         <label :for="`grandes_${index}_${indexg}`">
                                             {{ grandes.capacidad }}
                                         </label>
@@ -140,8 +140,8 @@
                             <div class="form-group clearfix row">
                                 <div class="col" v-for="(pipas,indexpi) in contenedor.info.pipas" style="text-align: center;">
                                     <img class="imagen-recipientes" :src="'img/pipa.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
-                                    <div class="icheck-primary d-inline">
-                                        <input @click="addContenedorPipa(`${pipas.capacidad}-${index}_${indexpi}`)" type="checkbox" :id="`pipas_${index}_${indexpi}`" :value="`${pipas.capacidad}`" :name="`${pipas.capacidad}-${index}_${indexpi}`">
+                                    <div class="custom-control custom-radio d-inline">
+                                        <input @click="addContenedorPequeno(`Pipa de ${pipas.capacidad}`, index)" type="radio" :id="`pipas_${index}_${indexpi}`" :value="`${pipas.capacidad}`" :name="`contenedor_${index}`">
                                         <label :for="`pipas_${index}_${indexpi}`">
                                             {{ pipas.capacidad }}
                                         </label>
@@ -158,8 +158,8 @@
                             <div class="form-group clearfix row">
                                 <div class="col" v-for="(toolbar,indext) in contenedor.info.toolbar" style="text-align: center;">
                                     <img class="imagen-recipientes" :src="'img/tolbar.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
-                                    <div class="icheck-primary d-inline">
-                                        <input @click="addContenedorToolbar(`${toolbar.capacidad}-${index}_${indext}`)" type="checkbox" :id="`toolbar_${index}_${indext}`" :value="`${toolbar.capacidad}`" :name="`${toolbar.capacidad}-${index}_${indext}`">
+                                    <div class="custom-control custom-radio d-inline">
+                                        <input @click="addContenedorPequeno(`Tolva de ${toolbar.capacidad}`, index)" type="radio" :id="`toolbar_${index}_${indext}`" :value="`${toolbar.capacidad}`" :name="`contenedor_${index}`">
                                         <label :for="`toolbar_${index}_${indext}`">
                                             {{ toolbar.capacidad }}
                                         </label>
@@ -177,28 +177,28 @@
                     <label class="titulo-contenedores">Dias del Servicio</label>
                     <div class="form-group clearfix">
                       <div class="icheck-primary d-inline">
-                        <input @click="addDias(`${index}_lunes`)" type="checkbox" :id="`lunes_${index}`" :name="`lunes_${index}`">
+                        <input @click="addDias(`lunes`,index)" type="checkbox" :id="`lunes_${index}`" :name="`lunes_${index}`">
                         <label :for="`lunes_${index}`">
                         Lunes
                         </label>
                       </div>
 
                       <div class="icheck-primary d-inline">
-                        <input @click="addDias(`${index}_martes`)" type="checkbox" :id="`martes_${index}`" :name="`martes_${index}`">
+                        <input @click="addDias(`martes`,index)" type="checkbox" :id="`martes_${index}`" :name="`martes_${index}`">
                         <label :for="`martes_${index}`">
                         Martes
                         </label>
                       </div>
 
                       <div class="icheck-primary d-inline">
-                        <input @click="addDias(`${index}_miercoles`)" type="checkbox" :id="`miercoles_${index}`" :name="`miercoles_${index}`">
+                        <input @click="addDias(`miercoles`,index)" type="checkbox" :id="`miercoles_${index}`" :name="`miercoles_${index}`">
                         <label :for="`miercoles_${index}`">
                         Miercoles
                         </label>
                       </div>
 
                       <div class="icheck-primary d-inline">
-                        <input @click="addDias(`${index}_jueves`)" type="checkbox" :id="`jueves_${index}`" :name="`jueves_${index}`">
+                        <input @click="addDias(`jueves`,index)" type="checkbox" :id="`jueves_${index}`" :name="`jueves_${index}`">
                         <label :for="`jueves_${index}`">
                         Jueves
                         </label>
@@ -207,21 +207,21 @@
                       <div clas="w-100" style="margin-bottom: 18px;"></div>
 
                       <div class="icheck-primary d-inline">
-                        <input @click="addDias(`${index}_viernes`)" type="checkbox" :id="`viernes_${index}`" :name="`viernes_${index}`">
+                        <input @click="addDias(`viernes`,index)" type="checkbox" :id="`viernes_${index}`" :name="`viernes_${index}`">
                         <label :for="`viernes_${index}`">
                         Viernes
                         </label>
                       </div>
                       
                       <div class="icheck-primary d-inline">
-                        <input @click="addDias(`${index}_sabado`)" type="checkbox" :id="`sabado_${index}`" :name="`sabado_${index}`">
+                        <input @click="addDias(`sabado`,index)" type="checkbox" :id="`sabado_${index}`" :name="`sabado_${index}`">
                         <label :for="`sabado_${index}`">
                         Sabado
                         </label>
                       </div>
 
                       <div class="icheck-primary d-inline">
-                        <input @click="addDias(`${index}_domingos`)" type="checkbox" :id="`domingo_${index}`" :name="`domingo_${index}`">
+                        <input @click="addDias(`domingo`,index)" type="checkbox" :id="`domingo_${index}`" :name="`domingo_${index}`">
                         <label :for="`domingo_${index}`">
                         Domingo
                         </label>
@@ -229,7 +229,7 @@
                         <div clas="w-100" style="margin-bottom: 18px;"></div>
                         
                         <button @click="addContenedores" type="button" class="btn-app btn-success btn-sm" ><i class="fas fa-plus-circle"></i> Agregar</button>
-                        <button @click="deleteContenedor(index)" type="button" class="btn-app btn-success btn-sm" > <i class="fas fa-minus-circle"></i>Eliminar</button>
+                        <button @click="deleteContenedor(`${index}`)" type="button" class="btn-app btn-success btn-sm" > <i class="fas fa-minus-circle"></i>Eliminar</button>
                     </div>
                 </div>
                 <!--DIAS-->
@@ -460,6 +460,7 @@
                 comentarios:"",
                 texto_boton: "Solicitar Cotización",
                 bandera: false,
+                num_contenedores : [],
 
             }
         },
@@ -478,11 +479,7 @@
                 {
                    this.texto_boton='Enviando Email...';
                    this.bandera=true;
-                   axios.post('post',{pequenos: this.pequenos,
-                                        grandes: this.grandes,
-                                        pipas: this.pipas,
-                                        toolbar: this.toolbar,
-                                        dias: this.dias,
+                   axios.post('post',{info_contenedores: this.num_contenedores,
                                         ciudad: this.ciudad_servicio,
                                         pregunta_uno: this.pregunta_1,
                                         pregunta_dos: this.pregunta_2,
@@ -506,6 +503,7 @@
                                         comentarios: this.comentarios,
                                         num_servicios: this.servicios})
                     .then((response)=>{
+                        console.log(response.data);
                         // alert("todo bien");
                         this.$swal.fire({
                             icon: 'success',
@@ -578,7 +576,14 @@
 
             addContenedores()
             {
-                 this.servicios++;
+                // this.num_contenedores.push({
+                //     dias: ["lunes","martes","miercoles"]
+                // });
+                // this.num_contenedores.push({
+                //     dias: ["jueves","viernes","sabado"]
+                // });
+                // console.log(this.num_contenedores);
+                this.servicios++;
                 console.log(this.servicios);
                 this.listaContenedores()
                
@@ -586,8 +591,11 @@
 
             deleteContenedor(index)
             {
-
-                this.datos_contenedores.info.splice(index, 1);
+                // console.log("el index "+index);
+                // console.log(this.animales);
+                // console.log(this.animales.splice(1,1));
+                this.datos_contenedores.info.splice(1, 1);
+                this.num_contenedores.pop();
                 this.servicios--;
                 console.log(this.servicios);
             },
@@ -750,119 +758,109 @@
 
             },
             validaciones() {
-               
-                if(this.ciudad_servicio == "")
-                {
-                    this.mensaje_error = "Favor de seleccionar una ciudad"
-                }
-                else if(this.pipas.length==0 && this.pequenos.length==0 && this.grandes.length==0)
-                {
-                    this.mensaje_error = "Favor de seleccionar un los contenedores"
-                }
-                else if(this.dias.length==0)
-                {
-                    this.mensaje_error = "Favor de seleccionar dia de servicio"
-                }
-                else
-                {
-                    this.mensaje_error = "";
-                }
 
-                if(this.mensaje_error!="")
+                if(this.num_contenedores.length!==this.servicios)
                 {
                     this.$swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: this.mensaje_error,
-                    });
-
-                    return false;
+                         icon: 'error',
+                         title: 'Error',
+                         text: "Favor de seleccionar los contenedores",
+                     });
+                     return false;
                 }
                 else
                 {
-                    return true;
+                    for (var i = 0; i < this.servicios; i++) {
+
+                        if(this.num_contenedores[i].contenedor.length == 0)
+                        {
+                            this.$swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: "Favor de seleccionar el contenedor en el servicio " + (i+1),
+                            });
+                            return false;
+                        }
+                        else if(this.num_contenedores[i].dias.length == 0)
+                        {
+                            this.$swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: "Favor de seleccionar los dias de servicio en el servicio " + (i+1),
+                            });
+                            return false;
+                        }
+                        
+                    }
                 }
+                return true;
+               
 
                 
             },
-            addContenedorPequeno(contenedor)
+            addContenedorPequeno(contenedor,index)
             {
-                if(this.pequenos.indexOf(contenedor) == -1)
+
+                if(!this.num_contenedores[index])
                 {
-                    this.pequenos.push(contenedor)
+                    this.num_contenedores.push({
+                        contenedor,
+                        dias: []
+
+                    });
                 }
                 else
                 {
-                    let posicion = this.pequenos.indexOf(contenedor);
-                    this.pequenos.splice(posicion, 1);
+                    this.num_contenedores[index].contenedor = contenedor;
                 }
 
-                console.log(this.pequenos.indexOf(contenedor));
-                console.log(this.pequenos);
+                console.log(this.num_contenedores);
+                
             },
-            addContenedorGrande(contenedor)
+            addDias(dia,index)
             {
-                if(this.grandes.indexOf(contenedor) == -1)
+                if(!this.num_contenedores[index])
+                {
+                    this.num_contenedores.push({
+                        contenedor: [],
+                        dias: [dia]
+
+                    });
+                }
+                else
+                {
+
+                    if(this.num_contenedores[index].dias.indexOf(dia) == -1)
+                    {
+                        console.log(this.num_contenedores[index].dias.indexOf(dia));
+                        this.num_contenedores[index].dias.push(dia);
+                    }
+                    else
+                    {
+                        let posicion = this.num_contenedores[index].dias.indexOf(dia);
+                        this.num_contenedores[index].dias.splice(posicion, 1);
+                    }
+
+                    // console.log(this.num_contenedores[index].dias.length);
+                    
+                }
+
+                console.log(this.num_contenedores);
+
+            },
+            addContenedorGrande(contenedor, index)
+            {
+                if(!this.grandes[index])
                 {
                     this.grandes.push(contenedor)
                 }
                 else
                 {
-                    let posicion = this.grandes.indexOf(contenedor);
-                    this.grandes.splice(posicion, 1);
+                    this.grandes[index] = contenedor;
+                    console.log(this.grandes[index]);
+                    console.log(this.grandes);
                 }
-
-                console.log(this.grandes.indexOf(contenedor));
-                console.log(this.grandes);
             },
-            addContenedorPipa(contenedor)
-            {
-                if(this.pipas.indexOf(contenedor) == -1)
-                {
-                    this.pipas.push(contenedor)
-                }
-                else
-                {
-                    let posicion = this.pipas.indexOf(contenedor);
-                    this.pipas.splice(posicion, 1);
-                }
-
-
-                console.log(this.pipas.length);
-                console.log(this.pipas);
-            },
-            addContenedorToolbar(contenedor)
-            {
-                if(this.toolbar.indexOf(contenedor) == -1)
-                {
-                    this.toolbar.push(contenedor)
-                }
-                else
-                {
-                    let posicion = this.toolbar.indexOf(contenedor);
-                    this.toolbar.splice(posicion, 1);
-                }
-
-
-                console.log(this.toolbar.length);
-                console.log(this.toolbar);
-            },
-            addDias(dia)
-            {
-                if(this.dias.indexOf(dia) == -1)
-                {
-                    this.dias.push(dia)
-                }
-                else
-                {
-                    let posicion = this.dias.indexOf(dia);
-                    this.dias.splice(posicion, 1);
-                }
-
-                this.dias.sort();
-                console.log(this.dias.length);
-                console.log(this.dias);
-            }
             
         
         },

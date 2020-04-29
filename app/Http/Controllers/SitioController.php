@@ -15,95 +15,26 @@ class SitioController extends Controller
     public function informacion(Request $request)
     {
         //$contenedores = $request->pequenos;
-        $dias =  $request->dias;
-        $contenedores_pequenos=$request->pequenos;
-        $contenedores_grandes=$request->grandes;
-        $contenedores_pipas=$request->pipas;
-        $contenedores_toolbar=$request->toolbar;
         // $pregunta_uno = $request->pregunta_uno;
-        $contenedores_pequenos_info="";
+        $count = 1;
+        $info_contenedores= $request->info_contenedores;
         $datos = $request->all();
-        // $post = Post::create($request->all());
-        
-        $dia_info="";
+        $informacion_servicios = "";
         $servicios = $request->num_servicios;
+
         $informacion_servicios ="LOS NUMEROS DE SERVICIOS SON : <b>".$servicios."</b><br><br>";
+        foreach ($info_contenedores as $info_contenedor) {
 
-        for ($i=0; $i <$servicios ; $i++) { 
-            
-            $informacion_servicios.= "DIAS DE SERVICIO NUMERO ".($i+1).": ";
-            foreach ($dias as $dia) {
+            $informacion_servicios.= "DIAS DE SERVICIO NUMERO ".($count).": ";
 
-                // $posicion = (strpos($dia, "_")+1);
-                $posicion = strpos($dia, "_");
-                $dia_info = substr($dia,0,$posicion);
-                if($dia_info==$i)
-                { 
-                    $nombre_dia = substr($dia,($posicion+1));
-                    $informacion_servicios.= "<b>".$nombre_dia.", </b>";
-                }     
-            }
-            $informacion_servicios.= "<br><br>";
-            $informacion_servicios.="Los contenedores pequenos son: ";            
-            foreach ($contenedores_pequenos as $contenedor_pequeno) {
-                $posicion = strpos($contenedor_pequeno, "-");
-                $pequeno_info = substr($contenedor_pequeno,0,$posicion);
-                $num_servicio = substr($contenedor_pequeno,($posicion+1),1);
-
-                if($num_servicio == $i)
-                {
-                    $informacion_servicios.="<b>".$pequeno_info.", </b>";
-                }
-               
+            foreach ($info_contenedor["dias"] as $info_dias) {
+                $informacion_servicios .= "<b>".$info_dias.",</b> ";
             }
 
             $informacion_servicios.= "<br><br>";
-
-            $informacion_servicios.="Los contenedores Grandes son: ";            
-            foreach ($contenedores_grandes as $contenedor_grande) {
-                $posicion = strpos($contenedor_grande, "-");
-                $grande_info = substr($contenedor_grande,0,$posicion);
-                $num_servicio = substr($contenedor_grande,($posicion+1),1);
-
-                if($num_servicio == $i)
-                {
-                    $informacion_servicios.="<b>".$grande_info.", </b>";
-                }
-               
-            }
-
-            $informacion_servicios.= "<br><br>";
-
-            $informacion_servicios.="Las Pipas son: ";            
-            foreach ($contenedores_pipas as $contenedor_pipa) {
-                $posicion = strpos($contenedor_pipa, "-");
-                $pipa_info = substr($contenedor_pipa,0,$posicion);
-                $num_servicio = substr($contenedor_pipa,($posicion+1),1);
-
-                if($num_servicio == $i)
-                {
-                    $informacion_servicios.="<b>".$pipa_info.", </b>";
-                }
-               
-            }
-
-            $informacion_servicios.= "<br><br>";
-
-            $informacion_servicios.="Las Tolvas son: ";            
-            foreach ($contenedores_toolbar as $contenedor_toolbar) {
-                $posicion = strpos($contenedor_toolbar, "-");
-                $toolbar_info = substr($contenedor_toolbar,0,$posicion);
-                $num_servicio = substr($contenedor_toolbar,($posicion+1),1);
-
-                if($num_servicio == $i)
-                {
-                    $informacion_servicios.="<b>".$toolbar_info.", </b>";
-                }
-               
-            }
-
-
-            $informacion_servicios.= "<br><br><hr>";
+            $informacion_servicios .= "El contenedor solicitado es: <b>".$info_contenedor["contenedor"]."</b>";
+            $informacion_servicios.= "<br><hr>";
+           $count++;
         }
 
         //Mail::send('emails.contact', $data, function ($message) {});
@@ -140,19 +71,11 @@ class SitioController extends Controller
             $msj->to("callcenter2@ecolomovil.com");
             $msj->to("pablodelhip@gmail.com");
         });
-        
 
-        
-
-        // // return response()->json($post);
-         return response()->json([
-             'num_servicios' => $servicios,
-             'informacion' => $informacion_servicios ,
-             'pequenos'=>$contenedores_pequenos,
-             'dias' => $dia_info,
-             'pequeno_info'=>$contenedores_pequenos_info,
-             'datos' => $datos,
-         ]);
+        return response()->json([
+            'datos' => $datos,
+            'informacion' => $informacion_servicios 
+        ]);
     }
 
     public function email()
