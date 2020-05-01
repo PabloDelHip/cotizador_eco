@@ -103,7 +103,7 @@
                             <label class="titulo-contenedores">Contenedores Pequeños</label>
                             <div class="form-group clearfix row">
                                 <div  class="col" v-for="(pequenos,indexp) in contenedor.info.pequenos" style="text-align: center;">
-                                    <img class="imagen-recipientes" :src="'img/contenedores-pequeños.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
+                                    <img class="imagen-recipientes" :src="`img/${pequenos.img}`" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
                                     <div class="custom-control custom-radio d-inline">
                                         <input @click="addContenedorPequeno(`Contenedor pequeno de ${pequenos.capacidad}`,index)" type="radio" :id="`pequeno_${index}_${indexp}`" :name="`contenedor_${index}`" :value="`${pequenos.capacidad}-${index}_${indexp}`" >
                                         <label :for="`pequeno_${index}_${indexp}`">
@@ -118,10 +118,10 @@
 
                     <div class="col-12 row ">
                         <div class="col-12 row d-flex justify-content-start">
-                            <label class="titulo-contenedores">Contenedores Grandes</label>
+                            <label class="titulo-contenedores">Equipos Roll off</label>
                             <div class="form-group clearfix row">
                                 <div class="col-3" v-for="(grandes,indexg) in contenedor.info.grandes" style="text-align: center;">
-                                    <img class="imagen-recipientes" :src="'img/contenedores-grandes.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
+                                    <img class="imagen-recipientes" :src="`img/${grandes.img}`" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
                                     <div class="custom-control custom-radio d-inline">
                                         <input @click="addContenedorPequeno(`Contenedor grande de ${grandes.capacidad}`, index)" type="radio" :id="`grandes_${index}_${indexg}`" :name="`contenedor_${index}`" :value="`${grandes.capacidad}-${index}_${indexg}`">
                                         <label :for="`grandes_${index}_${indexg}`">
@@ -154,7 +154,7 @@
 
                     <div class="col-12 row ">
                         <div class="col-12 row d-flex justify-content-start">
-                            <label class="titulo-contenedores">Equipo Compactador con Tolvas</label>
+                            <label class="titulo-contenedores">Equipo Compacto con Tolvas</label>
                             <div class="form-group clearfix row">
                                 <div class="col" v-for="(toolbar,indext) in contenedor.info.toolbar" style="text-align: center;">
                                     <img class="imagen-recipientes" :src="'img/tolbar.png'" alt="logo-ecolomovil" style="width: 100px; margin-bottom: 10px;">
@@ -227,7 +227,7 @@
                         </label>
                       </div>
                         <div clas="w-100" style="margin-bottom: 18px;"></div>
-                        
+                        <small>Si necesita mas de una ubicación, presionar el botón agregar</small>
                         <button @click="addContenedores" type="button" class="btn-app btn-success btn-sm" ><i class="fas fa-plus-circle"></i> Agregar</button>
                         <button @click="deleteContenedor(`${index}`)" type="button" class="btn-app btn-success btn-sm" > <i class="fas fa-minus-circle"></i>Eliminar</button>
                     </div>
@@ -691,33 +691,42 @@
                 
                 let contenedores_pequenos = [
                     {
+                        img: "1_2m_15m.png",
                         capacidad: '1.5 m³'
                     },
                     {
+                        img: "1_2m_15m.png",
                         capacidad: '2 m³'
                     },
                     {
+                        img: "1_3m.png",
                         capacidad: '3 m³'
                     },
                     {
+                        img: "1_4m.png",
                         capacidad: '4 m³'
                     },
                     {
+                        img: "1_6m.png",
                         capacidad: '6 m³'
                     },
                 ];
 
                 let contenedores_grandes = [ 
                     {
+                        img: "1_8m.png",
                         capacidad: '8 m³'
                     },
                     {
+                        img: "1_16m.png",
                         capacidad: '16 m³'
                     },
                     {
+                        img: "1_22m.png",
                         capacidad: '22 m³'
                     },
                     {
+                        img: "1_28m.png",
                         capacidad: '28 m³'
                     },        
                 ]

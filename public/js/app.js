@@ -2715,23 +2715,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     listaContenedores: function listaContenedores() {
       var contenedores_pequenos = [{
+        img: "1_2m_15m.png",
         capacidad: '1.5 m³'
       }, {
+        img: "1_2m_15m.png",
         capacidad: '2 m³'
       }, {
+        img: "1_3m.png",
         capacidad: '3 m³'
       }, {
+        img: "1_4m.png",
         capacidad: '4 m³'
       }, {
+        img: "1_6m.png",
         capacidad: '6 m³'
       }];
       var contenedores_grandes = [{
+        img: "1_8m.png",
         capacidad: '8 m³'
       }, {
+        img: "1_16m.png",
         capacidad: '16 m³'
       }, {
+        img: "1_22m.png",
         capacidad: '22 m³'
       }, {
+        img: "1_28m.png",
         capacidad: '28 m³'
       }];
       var pipas = [{
@@ -42847,7 +42856,7 @@ var render = function() {
                                     "margin-bottom": "10px"
                                   },
                                   attrs: {
-                                    src: "img/contenedores-pequeños.png",
+                                    src: "img/" + pequenos.img,
                                     alt: "logo-ecolomovil"
                                   }
                                 }),
@@ -42918,7 +42927,7 @@ var render = function() {
                       },
                       [
                         _c("label", { staticClass: "titulo-contenedores" }, [
-                          _vm._v("Contenedores Grandes")
+                          _vm._v("Equipos Roll off")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -42942,7 +42951,7 @@ var render = function() {
                                     "margin-bottom": "10px"
                                   },
                                   attrs: {
-                                    src: "img/contenedores-grandes.png",
+                                    src: "img/" + grandes.img,
                                     alt: "logo-ecolomovil"
                                   }
                                 }),
@@ -43100,7 +43109,7 @@ var render = function() {
                       },
                       [
                         _c("label", { staticClass: "titulo-contenedores" }, [
-                          _vm._v("Equipo Compactador con Tolvas")
+                          _vm._v("Equipo Compacto con Tolvas")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -43344,6 +43353,12 @@ var render = function() {
                       staticStyle: { "margin-bottom": "18px" },
                       attrs: { clas: "w-100" }
                     }),
+                    _vm._v(" "),
+                    _c("small", [
+                      _vm._v(
+                        "Si necesita mas de una ubicación, presionar el botón agregar"
+                      )
+                    ]),
                     _vm._v(" "),
                     _c(
                       "button",

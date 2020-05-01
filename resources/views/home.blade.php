@@ -34,11 +34,17 @@
 
         <div class="container">
             <div class="row col-12 mt-2 d-flex align-items-end p-2">
-                <div class="col-6">
+                <div class="col-3">
                     <img src="{{asset('img/logo-ecolomovil.png')}}" alt="logo-ecolomovil" style="width: 100px;">
                 </div>
-                <div class="col-6 text-right">
-                    <span class="num_cel"> <i class="fas fa-phone"></i> 0810 555-5500 </span> 
+                <div class="col-6 text-center">
+                    <h2>Por un México más limpio...</h2>
+                </div>
+                <div class="col-3 text-right">
+                    <a href="https://api.whatsapp.com/send?phone=5215585339615&text=Hola, me gustaria hacer una cotización" class="num_cel"> <i class="fab fa-whatsapp"></i> 55 8533 9615 </a> 
+                    <br>
+                    <a href="https://api.whatsapp.com/send?phone=5215560142555&text=Hola, me gustaria hacer una cotización" class="num_cel"> <i class="fab fa-whatsapp"></i> 55 6014 2555 </a> 
+                
                 </div>
             </div>
         </div>
@@ -71,7 +77,7 @@
                             <small>
                                 Recuerda que el servicio que está contratando es para residuos de manejo especial y residuos sólidos urbanos. Te recomendamos no colocar residuos peligrosos ya que por norma aplica multas.
                                 <br>
-                                <i class="fas fa-phone"></i> &nbsp; 0810 555-5500 | <i class="fas fa-envelope"></i> &nbsp; contacto@ecolomovil.com
+                                <a href="https://api.whatsapp.com/send?phone=5215585339615&text=Hola, me gustaria hacer una cotización"> <i class="fab fa-whatsapp"></i> 55 8533 9615 </a> |  <a href="https://api.whatsapp.com/send?phone=5215560142555&text=Hola, me gustaria hacer una cotización"> <i class="fab fa-whatsapp"></i> 55 6014 2555 </a> | <i class="fas fa-envelope"></i> &nbsp; contacto@ecolomovil.com
                             </small>
                             
                         </div>
